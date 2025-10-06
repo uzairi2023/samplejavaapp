@@ -5,13 +5,13 @@ pipeline {
 	   steps {
                 echo 'compiling..'
 		git url: 'https://github.com/lerndevops/samplejavaapp'
-		sh script: '/opt/maven/bin/mvn compile'
+		sh script: '/usr/bin/mvn compile'
            }
         }
         stage('codereview-pmd') {
 	   steps {
                 echo 'codereview..'
-		sh script: '/opt/maven/bin/mvn -P metrics pmd:pmd'
+		sh script: '/usr/bin/mvn -P metrics pmd:pmd'
            }
 	   post {
                success {
@@ -22,7 +22,7 @@ pipeline {
         stage('unit-test') {
 	   steps {
                 echo 'unittest..'
-	        sh script: '/opt/maven/bin/mvn test'
+	        sh script: '/usr/bin/mvn test'
                  }
 	   post {
                success {
@@ -33,7 +33,7 @@ pipeline {
         stage('codecoverage') {
 	   steps {
                 echo 'unittest..'
-	        sh script: '/opt/maven/bin/mvn verify'
+	        sh script: '/usr/bin/mvn verify'
                  }
 	   post {
                success {
